@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, make_response
+from lib import browser
 
 app = Flask(__name__)
 
@@ -9,6 +10,7 @@ def index():
 
     response_payload['sitekey'] = request.json['sitekey']
     response_payload['action'] = request.json['action']
+    response_payload['site'] = request.json['site']
 
     response_payload['errors'] = []
 
@@ -26,10 +28,23 @@ def index():
         'Action is required'
     )
 
+    response_payload['errors'] = add_error(
+        response_payload.get('site'),
+        response_payload['errors'],
+        'Site is required'
+    )
+
     if len(response_payload.get('errors')) > 0:
         status = 422
     else:
         status = 200
+
+    if status is 200:
+        response_payload['solution'] = browser.solve(
+            response_payload.get('sitekey'),
+            response_payload.get('action'),
+            response_payload.get('site')
+        )
 
     return make_response(jsonify(response_payload), status)
 

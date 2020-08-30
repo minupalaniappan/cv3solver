@@ -1,2 +1,3 @@
 Flask==1.1.2
 python-dotenv==0.14.0
+selenium==3.141.0
