@@ -32,4 +32,6 @@ def solve(site_key, action, site):
             "return window.localStorage.getItem('solution')"
         )
 
+    driver.quit()
+
     return solution
