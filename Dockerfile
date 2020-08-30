@@ -39,4 +39,4 @@ ENV FLASK_APP /app/app.py
 
 EXPOSE 5000
 
-CMD flask run
+CMD flask run --port 5000
