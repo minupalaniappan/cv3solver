@@ -2,12 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 
+BROWSER = {}
+DRIVER = None
+
 
 def solve(site_key, action, site):
     options = Options()
     options.headless = True
 
-    driver = webdriver.Firefox(options=options)
+    if DRIVER is None:
+        driver = webdriver.Firefox(options=options)
 
     driver.get(site)
     driver.execute_script(
@@ -31,7 +35,5 @@ def solve(site_key, action, site):
         solution = driver.execute_script(
             "return window.localStorage.getItem('solution')"
         )
-
-    driver.quit()
 
     return solution
