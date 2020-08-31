@@ -61,4 +61,4 @@ def add_error(val, errors, message):
 
 
 if __name__ == '__main__':
-    app.run(threaded=True, host='0.0.0.0', port=port)
+    app.run(threaded=True, host='0.0.0.0', port=port, debug=False)
