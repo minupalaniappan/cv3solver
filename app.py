@@ -1,7 +1,11 @@
+import os
+
 from flask import Flask, request, jsonify, make_response
 from lib import browser
 
 app = Flask(__name__)
+
+port = int(os.environ.get('PORT', 5000))
 
 
 @app.route('/solve', methods=['POST'])
@@ -54,3 +58,7 @@ def add_error(val, errors, message):
         errors.append(message)
 
     return errors
+
+
+if __name__ == '__main__':
+    app.run(threaded=True, host='0.0.0.0', port=port)

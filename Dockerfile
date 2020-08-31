@@ -35,8 +35,8 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 
-ENV FLASK_APP /app/app.py 
-
 EXPOSE 5000
 
-CMD flask run --port 5000
+ENTRYPOINT ['python']
+
+CMD ['app.py']
